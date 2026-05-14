@@ -1,0 +1,40 @@
+﻿<h2>Library Books</h2>
+
+<button onclick="loadBooks()">
+    Load Books
+</button>
+
+<div id="result"></div>
+
+<script>
+
+    function loadBooks() {
+
+        fetch('/api/DatabaseBooks')
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            let output = "";
+
+            data.forEach(book => {
+
+                output += `
+                    <p>
+                        <b>${book.title}</b>
+                    </p>
+                `;
+            });
+
+            document.getElementById("result").innerHTML =
+                output;
+        })
+
+        .catch(error => {
+
+            alert("Error loading books");
+        });
+    }
+
+</script>
